@@ -35,4 +35,15 @@ public class Steps : MonoBehaviour
       //  gameManager.Activate2();
 
     }
+
+    public void ChangeCam3()
+    {
+        gameManager.FilingCamera1();
+
+    }
+    public void ChangeCam4()
+    {
+        gameManager.FilingCamera2();
+
+    }
 }

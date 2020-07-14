@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject step1, step2, step3, step4, step5;
     public GameObject paintColors, paintMix;
     public GameObject colorButtons;
-    public GameObject cam1, cam2, cam3;
+    public GameObject cam1, cam2, cam3, cam4;
 
     private int cntr;
 
@@ -39,19 +39,16 @@ public class GameManager : MonoBehaviour
         step3.SetActive(true);
         colorButtons.SetActive(true);
 
-        cam1.SetActive(false);
+        cam4.SetActive(false);
         cam2.SetActive(true);
-
     }
 
     public void Activate4()
     {
-
         colorButtons.SetActive(false);
 
         step3.SetActive(false);
         step4.SetActive(true);
-
     }
 
     public void Activate5()
@@ -61,7 +58,6 @@ public class GameManager : MonoBehaviour
 
         cam1.SetActive(true);
         cam2.SetActive(false);
-
     }
 
     public void MixColors()
@@ -69,5 +65,19 @@ public class GameManager : MonoBehaviour
         paintColors.SetActive(false);
         paintMix.SetActive(true);
 
+        cam1.SetActive(false);
+        cam2.SetActive(true);
+    }
+
+    public void FilingCamera1()
+    {
+        cam1.SetActive(false);
+        cam3.SetActive(true);
+    }
+
+    public void FilingCamera2()
+    {
+        cam3.SetActive(false);
+        cam4.SetActive(true);
     }
 }
