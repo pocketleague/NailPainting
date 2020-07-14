@@ -9,11 +9,11 @@ public class Brush : MonoBehaviour
 
     public SkinnedMeshRenderer skinnedMeshRenderer;
 
-
-
     private Vector3 screenPoint;
     private Vector3 offset;
     public Vector3 startPos;
+
+    public ParticleSystem particles;
 
     void Start()
     {
@@ -47,8 +47,13 @@ public class Brush : MonoBehaviour
         if (col.gameObject.tag == "nail")
         {
             Debug.Log("kkkk");
-
             skinnedMeshRenderer.SetBlendShapeWeight(0, 100);
+        }
+
+        if (col.gameObject.tag == "normalNail")
+        {
+            Debug.Log("tttt");
+            particles.Play();
         }
     }
 
@@ -59,6 +64,11 @@ public class Brush : MonoBehaviour
             Debug.Log("kkkk");
 
             skinnedMeshRenderer.SetBlendShapeWeight(0, 0);
+        }
+
+        if (col.gameObject.tag == "normalNail")
+        {
+            particles.Stop();
         }
     }
 
