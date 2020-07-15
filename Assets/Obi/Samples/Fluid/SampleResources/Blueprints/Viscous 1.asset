@@ -30059,8 +30059,8 @@ MonoBehaviour:
   viscosity: 10
   surfaceTension: 1
   buoyancy: -1
-  atmosphericDrag: 0
-  atmosphericPressure: 0
+  atmosphericDrag: 10
+  atmosphericPressure: 10
   vorticity: 0
   diffusion: 0
   diffusionData: {x: 0, y: 0, z: 0, w: 0}
