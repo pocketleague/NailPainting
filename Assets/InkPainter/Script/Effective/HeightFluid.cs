@@ -50,7 +50,7 @@ namespace Es.InkPainter.Effective
 		private float horizontalSpread = 0.01f;
 
 		[SerializeField]
-		private float normalScaleFactor = 1;
+		private float normalScaleFactor = 0;
 
 		[SerializeField, Range(0.001f, 0.999f)]
 		private float AdhesionBorder = 0.01f;
@@ -104,6 +104,11 @@ namespace Es.InkPainter.Effective
 					}
 				};
 			}
+		}
+
+		public void SetNormalScaleFactor(float val)
+        {
+			normalScaleFactor = val;
 		}
 
 		/// <summary>
@@ -264,7 +269,9 @@ namespace Es.InkPainter.Effective
 					}
 					var normalTmp = RenderTexture.GetTemporary(normalPaint.width, normalPaint.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
 					height2Normal.SetTexture("_BumpMap", normalPaint);
-					height2Normal.SetFloat("_NormalScaleFactor", normalScaleFactor);
+
+					height2Normal.SetFloat("_NormalScaleFactor", GameManager.normalMapValue);
+
 					height2Normal.SetFloat("_Border", AdhesionBorder);
 					Graphics.Blit(heightPaint, normalTmp, height2Normal);
 					Graphics.Blit(normalTmp, normalPaint);

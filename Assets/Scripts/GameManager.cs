@@ -9,21 +9,58 @@ public class GameManager : MonoBehaviour
     public GameObject colorButtons;
     public GameObject cam1, cam2, cam3, cam4;
 
+    public static float normalMapValue;
     private int cntr;
 
+    public Es.InkPainter.Sample.CollisionPainter brushCollisionPainter;
+
+    public GameObject droplet;
+    public Transform brushTip;
+
+    private void Start()
+    {
+        normalMapValue = .5f;
+    }
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (cntr == 0)
-            {
-                cntr++;
-                MixColors();
-            }else if (cntr == 1)
-            {
-                cntr++;
-                Activate4();
-            }
+            //if (cntr == 0)
+            //{
+            //    cntr++;
+            //    step1.SetActive(false);
+            //    step2.SetActive(true);
+
+            //}
+            //else if (cntr == 1)
+            //{
+            //    cntr++;
+            //    step2.SetActive(false);
+            //    step3.SetActive(true);
+            //}
+
+            brushCollisionPainter.startPainting = true;
+
+            InvokeRepeating("ReduceValue", 0.1f, 0.1f);
+        }
+
+        if (Input.GetButtonDown("pickDrop"))
+        {
+            Debug.Log("ppp");
+            brushCollisionPainter.droplet = Instantiate(droplet, brushCollisionPainter.transform.position, Quaternion.identity, brushCollisionPainter.transform);
+        }
+        if (Input.GetButtonDown("spread"))
+        {
+            brushCollisionPainter.startPainting = true;
+            brushCollisionPainter.droplet.GetComponent<DisintegrateDrop>().startDisintegrating = true;
+        }
+    }
+
+    void ReduceValue()
+    {
+        if (normalMapValue > 0)
+        {
+            normalMapValue -= 0.01f;
         }
     }
 

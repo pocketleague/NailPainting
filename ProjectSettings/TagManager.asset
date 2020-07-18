@@ -6,6 +6,11 @@ TagManager:
   tags:
   - nail
   - normalNail
+  - FxTemporaire
+  - dirtNail
+  - brushTip
+  - leftSideNail
+  - rightSideNail
   layers:
   - Default
   - TransparentFX
@@ -15,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - DirtParticles
   - 
   - 
   - 

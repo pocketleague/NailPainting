@@ -15,6 +15,14 @@ public class Brush : MonoBehaviour
 
     public ParticleSystem particles;
 
+    public SkinnedMeshRenderer brushTip;
+    private float blendWeight;
+
+    public Transform acrylicNailPos;
+    public Transform brushModel;
+    public bool onRightSide;
+    public bool onLeftSide;
+
     void Start()
     {
         startPos = transform.position;
@@ -75,16 +83,51 @@ public class Brush : MonoBehaviour
 
     void OnMouseDown()
     {
-            Debug.Log("ddddd");
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        Debug.Log("ddddd");
+        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
     void OnMouseDrag()
     {
-            Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
-            transform.position = new Vector3(cursorPosition.x * 1f, gameObject.transform.position.y, cursorPosition.z);
+        Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+
+        if (cursorPosition.z >= transform.position.z)
+        {
+            blendWeight += 0.5f;
+            brushTip.SetBlendShapeWeight(0, blendWeight);
+        }
+        else
+        {
+            if (blendWeight > 0)
+            {
+                blendWeight -= 0.5f;
+            }
+
+            brushTip.SetBlendShapeWeight(0, blendWeight);
+        }
+        transform.position = new Vector3(cursorPosition.x * 1f, gameObject.transform.position.y, cursorPosition.z);
+
+
+        if (brushTip.transform.position.x > 0)
+        {
+            onRightSide = true;
+            onLeftSide = false;
+
+            Debug.Log("on left side");
+            brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, -10);
+
+        }
+        else
+       // if(!onLeftSide)
+        {
+            onLeftSide = true;
+            onRightSide = false;
+            Debug.Log("on right side");
+            brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, 40);
+
+        }
     }
 
     void OnMouseUp()
@@ -97,6 +140,9 @@ public class Brush : MonoBehaviour
         //    //   animator_soap.SetBool("crushing", false);
         //    soapParent.GetChild(0).GetComponentInChildren<Animator>().SetBool("crushing", false);
         //}
+        brushTip.SetBlendShapeWeight(0, 0);
+        blendWeight = 0;
+
 
     }
 }
