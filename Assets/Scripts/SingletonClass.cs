@@ -9,6 +9,7 @@ public class SingletonClass : MonoBehaviour
     public int LEVEL_NO;
     public bool IS_PRESSED;
 
+    public int STEP_NO;
 
     void Awake()
     {
