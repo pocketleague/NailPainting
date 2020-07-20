@@ -101,6 +101,7 @@ public class Brush : MonoBehaviour
         {
             if (cursorPosition.z >= transform.position.z)
             {
+                Debug.Log("blend weight change");
                 blendWeight += 0.5f;
                 brushTip.SetBlendShapeWeight(0, blendWeight);
             }
@@ -114,10 +115,10 @@ public class Brush : MonoBehaviour
                 brushTip.SetBlendShapeWeight(0, blendWeight);
             }
 
-            if (brushTip.transform.position.x > 0)
+            if (brushTip.transform.position.x > 0)       // left side
             {
-                onRightSide = true;
-                onLeftSide = false;
+                onRightSide = false;
+                onLeftSide = true;
 
                 Debug.Log("on left side");
                 //   brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, -10);
@@ -126,8 +127,9 @@ public class Brush : MonoBehaviour
             else
             // if(!onLeftSide)
             {
-                onLeftSide = true;
-                onRightSide = false;
+                onLeftSide = false;
+                onRightSide = true;
+
                 Debug.Log("on right side");
                 //   brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, 40);
                 brushModel.transform.localRotation = Quaternion.Euler(-52, -11, 30);
