@@ -16,9 +16,13 @@ namespace Es.InkPainter.Sample
         public bool startPainting;
         public GameObject droplet;
 
+        public int dropCounter;
+
         public void Awake()
 		{
-			GetComponent<MeshRenderer>().material.color = brush.Color;
+         //   startPainting = true;
+
+            GetComponent<MeshRenderer>().material.color = brush.Color;
 		}
 
 		public void OnCollisionStay(Collision collision)
@@ -56,8 +60,6 @@ namespace Es.InkPainter.Sample
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * -1 * hit.distance, Color.yellow);
                     if (hit.collider.tag == "nail")
                     {
-                        Debug.Log("Did Hit");
-
                         //foreach (var p in hit.point)
                         //{
                         var canvas = hit.collider.GetComponent<InkCanvas>();

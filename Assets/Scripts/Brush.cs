@@ -23,6 +23,7 @@ public class Brush : MonoBehaviour
     public bool onRightSide;
     public bool onLeftSide;
 
+    private Vector3 lastPos;
 
     void Start()
     {
@@ -70,8 +71,6 @@ public class Brush : MonoBehaviour
     {
         if (col.gameObject.tag == "nail")
         {
-            Debug.Log("kkkk");
-
             skinnedMeshRenderer.SetBlendShapeWeight(0, 0);
         }
 
@@ -84,43 +83,77 @@ public class Brush : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("ddddd");
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+        lastPos = transform.position;
+
     }
 
     void OnMouseDrag()
     {
         Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
-
+       
         transform.position = new Vector3(cursorPosition.x * 1, gameObject.transform.position.y, cursorPosition.z);
 
+        Vector3 dir = (lastPos - transform.position);
 
-        if (SingletonClass.instance.STEP_NO == 2)
+      //  Debug.Log("pppp dir "+dir);
+
+       
+
+
+
+        if (SingletonClass.instance.STEP_NO == 1)
         {
-            if (cursorPosition.z >= transform.position.z)
+            if (dir.z > 0)
             {
-                Debug.Log("blend weight change");
-                blendWeight += 0.5f;
+                Debug.Log("ppppp its moving up");//+ cursorPosition.z
+                blendWeight += 1f;
+                brushTip.SetBlendShapeWeight(0, blendWeight);
+            }
+            else if (dir.z < 0)
+            {
+                Debug.Log("ppppp its moving down");//+ cursorPosition.z
+                if (blendWeight > 0)
+                {
+                    blendWeight -= 1f;
+                }
                 brushTip.SetBlendShapeWeight(0, blendWeight);
             }
             else
             {
+                Debug.Log("ppppp its not moving ");//+ cursorPosition.z +" : "+transform.position.z)
+
                 if (blendWeight > 0)
                 {
-                    blendWeight -= 0.5f;
+                    blendWeight -= 1f;
                 }
-
                 brushTip.SetBlendShapeWeight(0, blendWeight);
             }
+
+
+            //if (cursorPosition.z >= transform.position.z)
+            //{
+            //    blendWeight += 1f;
+            //    brushTip.SetBlendShapeWeight(0, blendWeight);
+            //}
+            //else
+            //{
+            //    if (blendWeight > 0)
+            //    {
+            //        blendWeight -= 1f;
+            //    }
+            //    brushTip.SetBlendShapeWeight(0, blendWeight);
+            //}
 
             if (brushTip.transform.position.x > 0)       // left side
             {
                 onRightSide = false;
                 onLeftSide = true;
 
-                Debug.Log("on left side");
+           //     Debug.Log("on left side");
                 //   brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, -10);
                 brushModel.transform.localRotation = Quaternion.Euler(-52, -11, -30);
             }
@@ -130,12 +163,15 @@ public class Brush : MonoBehaviour
                 onLeftSide = false;
                 onRightSide = true;
 
-                Debug.Log("on right side");
+       //         Debug.Log("on right side");
                 //   brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, 40);
                 brushModel.transform.localRotation = Quaternion.Euler(-52, -11, 30);
             }
         }
-       
+
+        lastPos = transform.position;
+
+
 
     }
 

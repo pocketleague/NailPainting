@@ -19,6 +19,8 @@ public class DisintegrateDrop : MonoBehaviour
                 gameObject.transform.parent = other.gameObject.transform;
                 tipBrush = other.gameObject;
                 other.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = true;
+
+                other.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().dropCounter++;
             }
 
         }
@@ -55,8 +57,11 @@ public class DisintegrateDrop : MonoBehaviour
             }
             else
             {
+                if (tipBrush.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().dropCounter < 4)
+                {
+                    tipBrush.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = false;
+                }
                 startDisintegrating = false;
-                tipBrush.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = false;
 
                 gameObject.SetActive(false);
             }

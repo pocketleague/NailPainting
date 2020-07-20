@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetButtonDown("pickDrop"))
         {
-            Debug.Log("ppp");
             brushCollisionPainter.droplet = Instantiate(droplet, brushCollisionPainter.transform.position, Quaternion.identity, brushCollisionPainter.transform);
         }
         if (Input.GetButtonDown("spread"))
@@ -117,5 +116,31 @@ public class GameManager : MonoBehaviour
     {
         cam3.SetActive(false);
         cam4.SetActive(true);
+    }
+
+    public void NextButton()
+    {
+        if (SingletonClass.instance.STEP_NO == 0)
+        {
+            SingletonClass.instance.STEP_NO++;
+            step1.SetActive(false);
+            step2.SetActive(true);
+
+        }
+        else if (SingletonClass.instance.STEP_NO == 1)
+        {
+            step2.GetComponent<Animator>().SetBool("sticketOut", true);
+            Invoke("Delay", 2);
+        }
+    }
+
+    void Delay()
+    {
+        SingletonClass.instance.STEP_NO++;
+        step2.SetActive(false);
+     //   step3.SetActive(true);
+
+        brushCollisionPainter.startPainting = true;
+        InvokeRepeating("ReduceValue", 0.1f, 0.1f);
     }
 }
