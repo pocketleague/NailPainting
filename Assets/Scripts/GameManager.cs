@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        normalMapValue = .5f;
+        normalMapValue = 2;
     }
     private void Update()
     {
@@ -34,12 +34,17 @@ public class GameManager : MonoBehaviour
             }
             else if (SingletonClass.instance.STEP_NO == 1)
             {
-                SingletonClass.instance.STEP_NO++;
-                step2.SetActive(false);
-                step3.SetActive(true);
+                step2.GetComponent<Animator>().SetBool("sticketOut", true);
 
+                step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 1);
+                step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 1);
+
+                step2.transform.Find("Shape key curved nail").parent = step3.transform;
+                step3.SetActive(true);
                 brushCollisionPainter.startPainting = true;
-                InvokeRepeating("ReduceValue", 0.1f, 0.1f);
+
+              //  normalMapValue = 0.2f;
+                Invoke("Delay", 3);
             }
 
           
@@ -60,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         if (normalMapValue > 0)
         {
-            normalMapValue -= 0.01f;
+         //   normalMapValue -= 0.01f;
         }
     }
 
@@ -126,21 +131,46 @@ public class GameManager : MonoBehaviour
             step1.SetActive(false);
             step2.SetActive(true);
 
+          //  Invoke("DisableAnimator", 2);
         }
         else if (SingletonClass.instance.STEP_NO == 1)
         {
             step2.GetComponent<Animator>().SetBool("sticketOut", true);
-            Invoke("Delay", 2);
+
+            
+            step2.transform.Find("Shape key curved nail").GetComponent<BoxCollider>().enabled = false;
+
+          
+
+            brushCollisionPainter.startPainting = true;
+
+            Invoke("Delay", 3);
         }
     }
 
     void Delay()
     {
         SingletonClass.instance.STEP_NO++;
+
+         //   normalMapValue = 0.2f;
+
+        step2.transform.Find("Shape key curved nail").parent = step3.transform;
+        step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 100);
+        step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 100);
+
         step2.SetActive(false);
+
      //   step3.SetActive(true);
 
+        step3.SetActive(true);
         brushCollisionPainter.startPainting = true;
-        InvokeRepeating("ReduceValue", 0.1f, 0.1f);
+
+   //     InvokeRepeating("ReduceValue", 0.1f, 0.1f);
+    }
+
+    void DisableAnimator()
+    {
+        step2.GetComponent<Animator>().enabled = false;
+
     }
 }
