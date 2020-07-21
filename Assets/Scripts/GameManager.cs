@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
             confetti1.SetActive(true);
             confetti2.SetActive(true);
 
+            Invoke("DelayStep5", 4);
         }
 
     }
@@ -196,6 +197,12 @@ public class GameManager : MonoBehaviour
 
         normalMapValue = 0.2f;
 
+    }
+
+    void DelayStep5()
+    {
+        confetti1.SetActive(false);
+        confetti2.SetActive(false);
     }
 
     void DisableAnimator()
