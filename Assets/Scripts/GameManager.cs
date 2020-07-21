@@ -79,10 +79,9 @@ public class GameManager : MonoBehaviour
     {
         step2.SetActive(false);
         step3.SetActive(true);
-        colorButtons.SetActive(true);
 
         cam4.SetActive(false);
-        cam2.SetActive(true);
+        cam1.SetActive(true);
     }
 
     public void Activate4()
@@ -137,40 +136,47 @@ public class GameManager : MonoBehaviour
         {
             step2.GetComponent<Animator>().SetBool("sticketOut", true);
 
-            
             step2.transform.Find("Shape key curved nail").GetComponent<BoxCollider>().enabled = false;
 
-          
-
+            Invoke("DelayStep3", 3);
+        }
+        else if (SingletonClass.instance.STEP_NO == 2)
+        {
+            step2.GetComponent<Animator>().SetBool("sticketOut", true);
+            
             brushCollisionPainter.startPainting = true;
 
-            Invoke("Delay", 3);
+            Invoke("DelayStep4", 1);
         }
-
-         else if (SingletonClass.instance.STEP_NO == 2)
-        {
-            normalMapValue = 0.2f;
-        }
+       
     }
 
-    void Delay()
+    void DelayStep3()
     {
         SingletonClass.instance.STEP_NO++;
-
-         //   normalMapValue = 0.2f;
-
-        step2.transform.Find("Shape key curved nail").parent = step3.transform;
-        step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 100);
-        step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 100);
-
+     
         step2.SetActive(false);
-
-     //   step3.SetActive(true);
 
         step3.SetActive(true);
         brushCollisionPainter.startPainting = true;
+    }
 
-   //     InvokeRepeating("ReduceValue", 0.1f, 0.1f);
+
+    void DelayStep4()
+    {
+        SingletonClass.instance.STEP_NO++;
+
+        //step2.transform.Find("Shape key curved nail").parent = step3.transform;
+        //step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 100);
+        //step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 100);
+
+        step3.SetActive(false);
+
+        step4.SetActive(true);
+        brushCollisionPainter.startPainting = true;
+
+        normalMapValue = 0.2f;
+
     }
 
     void DisableAnimator()
