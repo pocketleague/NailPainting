@@ -146,6 +146,11 @@ public class GameManager : MonoBehaviour
 
             Invoke("Delay", 3);
         }
+
+         else if (SingletonClass.instance.STEP_NO == 2)
+        {
+            normalMapValue = 0.2f;
+        }
     }
 
     void Delay()

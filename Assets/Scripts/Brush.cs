@@ -105,7 +105,7 @@ public class Brush : MonoBehaviour
 
 
 
-        if (SingletonClass.instance.STEP_NO == 1)
+        if (SingletonClass.instance.STEP_NO == 1 && SingletonClass.instance.STEP_NO == 2)
         {
             if (dir.z > 0)
             {
