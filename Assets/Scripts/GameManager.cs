@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject step1, step2, step3, step4, step5;
     public GameObject paintColors, paintMix;
     public GameObject colorButtons;
-    public GameObject cam1, cam2, cam3, cam4;
+    public GameObject cam1, cam2, cam3, cam4, cam_allfinger;
 
     public static float normalMapValue;
 
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject droplet;
     public Transform brushTip;
 
+    public GameObject confetti1, confetti2;
 
     private void Start()
     {
@@ -124,16 +125,21 @@ public class GameManager : MonoBehaviour
 
     public void NextButton()
     {
+        Debug.Log("next btn "+SingletonClass.instance.STEP_NO);
         if (SingletonClass.instance.STEP_NO == 0)
         {
             SingletonClass.instance.STEP_NO++;
             step1.SetActive(false);
             step2.SetActive(true);
 
-          //  Invoke("DisableAnimator", 2);
+            Debug.Log("wah wah wah 1");
+
+            //  Invoke("DisableAnimator", 2);
         }
         else if (SingletonClass.instance.STEP_NO == 1)
         {
+            Debug.Log("wah wah wah 2");
+
             step2.GetComponent<Animator>().SetBool("sticketOut", true);
 
             step2.transform.Find("Shape key curved nail").GetComponent<BoxCollider>().enabled = false;
@@ -142,13 +148,26 @@ public class GameManager : MonoBehaviour
         }
         else if (SingletonClass.instance.STEP_NO == 2)
         {
-            step2.GetComponent<Animator>().SetBool("sticketOut", true);
-            
+            Debug.Log("wah wah wah 3");
+
             brushCollisionPainter.startPainting = true;
 
             Invoke("DelayStep4", 1);
         }
-       
+        else if (SingletonClass.instance.STEP_NO == 3)
+        {
+            Debug.Log("wah wah wah 4");
+
+            SingletonClass.instance.STEP_NO++;
+
+            cam1.SetActive(false);
+            cam_allfinger.SetActive(true);
+
+            confetti1.SetActive(true);
+            confetti2.SetActive(true);
+
+        }
+
     }
 
     void DelayStep3()

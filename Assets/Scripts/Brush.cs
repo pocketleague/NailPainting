@@ -101,7 +101,7 @@ public class Brush : MonoBehaviour
 
       //  Debug.Log("pppp dir "+dir);
 
-        if (SingletonClass.instance.STEP_NO == 1 || SingletonClass.instance.STEP_NO == 2)
+        if (SingletonClass.instance.STEP_NO == 1 || SingletonClass.instance.STEP_NO == 3)
         {
             if (dir.z > 0)
             {
