@@ -59,7 +59,7 @@ public class DisintegrateDrop : MonoBehaviour
             {
                 if (tipBrush.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().dropCounter < 4)
                 {
-                    tipBrush.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = false;
+                 //   tipBrush.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = false;
                 }
                 startDisintegrating = false;
 

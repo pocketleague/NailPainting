@@ -18,6 +18,8 @@ namespace Es.InkPainter.Sample
 
         public int dropCounter;
 
+        public bool dropRemoved;
+
         public void Awake()
 		{
          //   startPainting = true;
@@ -65,7 +67,21 @@ namespace Es.InkPainter.Sample
                         var canvas = hit.collider.GetComponent<InkCanvas>();
                         if (canvas != null)
                         {
-                            canvas.Paint(brush, hit.point);
+                                
+                           
+                            if (droplet.GetComponent<MegaMelt>().Amount < 150)
+                            {
+                                droplet.GetComponent<MegaMelt>().Amount += 1;
+                            }
+                            else
+                            {
+                                if (!dropRemoved)
+                                {
+                                    dropRemoved = true;
+                                    Invoke("Deactivate", 3);
+                                }
+                                canvas.Paint(brush, hit.point);
+                            }
                         }
                         // }
                     }
@@ -86,7 +102,10 @@ namespace Es.InkPainter.Sample
                     Debug.Log("Did not Hit");
                 }
             }
-           
+        }
+        void Deactivate()
+        {
+            droplet.SetActive(false);
         }
     }
 }
