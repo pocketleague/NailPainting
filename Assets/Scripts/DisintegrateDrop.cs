@@ -73,7 +73,7 @@ public class DisintegrateDrop : MonoBehaviour
         {
             if (gameObject.GetComponent<MegaMelt>().Amount < 20)
             {
-                gameObject.GetComponent<MegaMelt>().Amount += .4f;
+                gameObject.GetComponent<MegaMelt>().Amount += .7f;
             }
             else {
                 startMelting = false;

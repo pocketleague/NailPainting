@@ -20,35 +20,36 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         normalMapValue = 2;
     }
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (SingletonClass.instance.STEP_NO == 0)
-            {
-                SingletonClass.instance.STEP_NO++;
-                step1.SetActive(false);
-                step2.SetActive(true);
 
-            }
-            else if (SingletonClass.instance.STEP_NO == 1)
-            {
-                step2.GetComponent<Animator>().SetBool("sticketOut", true);
+            NextButton();
+            //if (SingletonClass.instance.STEP_NO == 0)
+            //{
+            //    SingletonClass.instance.STEP_NO++;
+            //    step1.SetActive(false);
+            //    step2.SetActive(true);
 
-                step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 1);
-                step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 1);
+            //}
+            //else if (SingletonClass.instance.STEP_NO == 1)
+            //{
+            //    step2.GetComponent<Animator>().SetBool("sticketOut", true);
 
-                step2.transform.Find("Shape key curved nail").parent = step3.transform;
-                step3.SetActive(true);
-                brushCollisionPainter.startPainting = true;
+            //    step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 1);
+            //    step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 1);
 
-              //  normalMapValue = 0.2f;
-                Invoke("Delay", 3);
-            }
+            //    step2.transform.Find("Shape key curved nail").parent = step3.transform;
+            //    step3.SetActive(true);
+            //    brushCollisionPainter.startPainting = true;
 
-          
+            //  //  normalMapValue = 0.2f;
+            //    Invoke("Delay", 3);
+            //}
         }
 
         if (Input.GetButtonDown("pickDrop"))
@@ -201,8 +202,8 @@ public class GameManager : MonoBehaviour
 
     void DelayStep5()
     {
-        confetti1.SetActive(false);
-        confetti2.SetActive(false);
+        //confetti1.SetActive(false);
+        //confetti2.SetActive(false);
     }
 
     void DisableAnimator()
