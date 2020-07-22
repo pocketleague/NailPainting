@@ -5,7 +5,7 @@ using UnityEngine;
 public class DisintegrateDrop : MonoBehaviour
 {
 
-    public bool startDisintegrating;
+    public bool startDisintegrating, startMelting;
     public GameObject tipBrush;
 
     private void OnTriggerEnter(Collider other)
@@ -66,6 +66,18 @@ public class DisintegrateDrop : MonoBehaviour
                 gameObject.SetActive(false);
             }
 
+
+        }
+
+        if (startMelting)
+        {
+            if (gameObject.GetComponent<MegaMelt>().Amount < 20)
+            {
+                gameObject.GetComponent<MegaMelt>().Amount += .4f;
+            }
+            else {
+                startMelting = false;
+            }
 
         }
     }

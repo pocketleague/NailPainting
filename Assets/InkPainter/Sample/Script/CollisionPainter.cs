@@ -67,8 +67,6 @@ namespace Es.InkPainter.Sample
                         var canvas = hit.collider.GetComponent<InkCanvas>();
                         if (canvas != null)
                         {
-                                
-                           
                             if (droplet.GetComponent<MegaMelt>().Amount < 150)
                             {
                                 droplet.GetComponent<MegaMelt>().Amount += 1;
@@ -80,8 +78,10 @@ namespace Es.InkPainter.Sample
                                     dropRemoved = true;
                                     Invoke("Deactivate", 3);
                                 }
-                                canvas.Paint(brush, hit.point);
                             }
+
+                            canvas.Paint(brush, hit.point);
+
                         }
                         // }
                     }
