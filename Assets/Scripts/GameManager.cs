@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
+     //   Cursor.visible = false;
         normalMapValue = 2;
     }
     private void Update()
