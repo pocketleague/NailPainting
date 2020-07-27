@@ -24,20 +24,22 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        //
         if (Input.GetButtonDown("Jump"))
         {
+            // To move to the next step
             NextButton();
         }
 
-        if (Input.GetButtonDown("pickDrop"))
-        {
-            brushCollisionPainter.droplet = Instantiate(droplet, brushCollisionPainter.transform.position, Quaternion.identity, brushCollisionPainter.transform);
-        }
-        if (Input.GetButtonDown("spread"))
-        {
-            brushCollisionPainter.startPainting = true;
-            brushCollisionPainter.droplet.GetComponent<DisintegrateDrop>().startDisintegrating = true;
-        }
+        //if (Input.GetButtonDown("pickDrop"))
+        //{
+        //    brushCollisionPainter.droplet = Instantiate(droplet, brushCollisionPainter.transform.position, Quaternion.identity, brushCollisionPainter.transform);
+        //}
+        //if (Input.GetButtonDown("spread"))
+        //{
+        //    brushCollisionPainter.startPainting = true;
+        //    brushCollisionPainter.droplet.GetComponent<DisintegrateDrop>().startDisintegrating = true;
+        //}
     }
 
     public void Activate2() {
@@ -93,21 +95,19 @@ public class GameManager : MonoBehaviour
         cam4.SetActive(true);
     }
 
+
+    // To move to the next step
     public void NextButton()
     {
-        Debug.Log("next btn "+SingletonClass.instance.STEP_NO);
         if (SingletonClass.instance.STEP_NO == 0)
         {
             SingletonClass.instance.STEP_NO++;
             step1.SetActive(false);
             step2.SetActive(true);
 
-            Debug.Log("wah wah wah 1");
         }
         else if (SingletonClass.instance.STEP_NO == 1)
         {
-            Debug.Log("wah wah wah 2");
-
             step2.GetComponent<Animator>().SetBool("sticketOut", true);
 
             step2.transform.Find("Shape key curved nail").GetComponent<BoxCollider>().enabled = false;
@@ -116,16 +116,12 @@ public class GameManager : MonoBehaviour
         }
         else if (SingletonClass.instance.STEP_NO == 2)
         {
-            Debug.Log("wah wah wah 3");
-
             brushCollisionPainter.startPainting = true;
 
             Invoke("DelayStep4", 1);
         }
         else if (SingletonClass.instance.STEP_NO == 3)
         {
-            Debug.Log("wah wah wah 4");
-
             SingletonClass.instance.STEP_NO++;
 
             cam1.SetActive(false);

@@ -10,7 +10,7 @@ public class DisintegrateDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "brushTip")
+        if (other.tag == "brushTip" && gameObject.name != "droplet")
         {
             if (!startDisintegrating)
             {
@@ -30,23 +30,6 @@ public class DisintegrateDrop : MonoBehaviour
     {
         if (startDisintegrating)
         {
-            
-            //if (transform.position.y > 2.242584f)
-            //{
-
-            //    if (transform.localScale.x > 0 && transform.localScale.y > 0 && transform.localScale.z > 0)
-            //    {
-            //        transform.localScale -= new Vector3(0.001f, 0.001f, 0.001f);
-            //    }
-            //    transform.position -= new Vector3(0, 0.002f, 0);
-            //}
-            //else
-            //{
-            //    startDisintegrating = false;
-            //    tipBrush.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = false;
-            //    gameObject.SetActive(false);
-            //}
-
             if (transform.localScale.x > 0 && transform.localScale.y > 0 && transform.localScale.z > 0)
             {
                 transform.localScale -= new Vector3(0.008f, 0.008f, 0.008f);
@@ -63,6 +46,8 @@ public class DisintegrateDrop : MonoBehaviour
             }
         }
 
+        // for starting melting effect of the drop
+        // melting it for small amount
         if (startMelting)
         {
             if (gameObject.GetComponent<MegaMelt>().Amount < 20)
