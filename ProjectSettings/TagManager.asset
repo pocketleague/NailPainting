@@ -11,6 +11,8 @@ TagManager:
   - brushTip
   - leftSideNail
   - rightSideNail
+  - obstacle
+  - droplet
   layers:
   - Default
   - TransparentFX
@@ -47,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: target
+    uniqueID: 2702289029
     locked: 0

@@ -18,7 +18,7 @@ public class DisintegrateDrop : MonoBehaviour
 
                 gameObject.transform.parent = other.gameObject.transform;
                 tipBrush = other.gameObject;
-                other.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = true;
+              //  other.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().startPainting = true;
 
                 other.gameObject.GetComponent<Es.InkPainter.Sample.CollisionPainter>().dropCounter++;
             }

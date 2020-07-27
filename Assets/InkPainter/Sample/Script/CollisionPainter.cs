@@ -20,6 +20,8 @@ namespace Es.InkPainter.Sample
 
         public bool dropRemoved;
 
+        public GameObject target_marker;
+
         public void Awake()
 		{
          //   startPainting = true;
@@ -45,7 +47,7 @@ namespace Es.InkPainter.Sample
         {
 
             //  ++waitCount;
-            if (startPainting)
+            if (true)
             {
                 // Bit shift the index of the layer (8) to get a bit mask
                 int layerMask = 1 << 8;
@@ -60,6 +62,18 @@ namespace Es.InkPainter.Sample
                 {
                     
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * -1 * hit.distance, Color.yellow);
+
+                    if (!startPainting && hit.collider.tag == "droplet")
+                    {
+                        Debug.Log("detected");
+                        startPainting = true;
+                    }
+
+                    if (!startPainting)
+                    {
+                        return;
+                    }
+
                     if (hit.collider.tag == "nail")
                     {
                         //foreach (var p in hit.point)
@@ -83,11 +97,18 @@ namespace Es.InkPainter.Sample
                                 }
 
                             }
-
                             canvas.Paint(brush, hit.point);
 
+                            target_marker.SetActive(true);
+                            Vector3 pos = new Vector3(hit.point.x, hit.point.y + .4f, hit.point.z);
+                            target_marker.transform.position = pos;
                         }
                         // }
+                    }
+                    else
+                    {
+                        target_marker.SetActive(false);
+
                     }
 
                     //if (hit.collider.tag == "leftSideNail")
