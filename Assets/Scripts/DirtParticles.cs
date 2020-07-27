@@ -11,7 +11,6 @@ public class DirtParticles : MonoBehaviour
         if (!IsRemoved)
         {
             IsRemoved = true;
-            //   gameObject.SetActive(false);
 
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(0, 5), 20, Random.Range(0, 5));

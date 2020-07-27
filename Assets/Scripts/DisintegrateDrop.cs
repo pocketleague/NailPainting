@@ -49,11 +49,7 @@ public class DisintegrateDrop : MonoBehaviour
 
             if (transform.localScale.x > 0 && transform.localScale.y > 0 && transform.localScale.z > 0)
             {
-                //transform.localScale -= new Vector3(-0.001f, 0.005f, -0.003f);
                 transform.localScale -= new Vector3(0.008f, 0.008f, 0.008f);
-
-             //  transform.position -= new Vector3(0, 0.001f, 0);
-
             }
             else
             {
@@ -65,8 +61,6 @@ public class DisintegrateDrop : MonoBehaviour
 
                 gameObject.SetActive(false);
             }
-
-
         }
 
         if (startMelting)

@@ -15,7 +15,6 @@ public class Particles : MonoBehaviour
 
             if (!particleSystem.isEmitting)
             {
-            Debug.Log("rrrrr1111");
                 particleSystem.Play();
             }
         }

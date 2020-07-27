@@ -20,36 +20,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-     //   Cursor.visible = false;
         normalMapValue = 2;
     }
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
-
             NextButton();
-            //if (SingletonClass.instance.STEP_NO == 0)
-            //{
-            //    SingletonClass.instance.STEP_NO++;
-            //    step1.SetActive(false);
-            //    step2.SetActive(true);
-
-            //}
-            //else if (SingletonClass.instance.STEP_NO == 1)
-            //{
-            //    step2.GetComponent<Animator>().SetBool("sticketOut", true);
-
-            //    step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 1);
-            //    step2.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 1);
-
-            //    step2.transform.Find("Shape key curved nail").parent = step3.transform;
-            //    step3.SetActive(true);
-            //    brushCollisionPainter.startPainting = true;
-
-            //  //  normalMapValue = 0.2f;
-            //    Invoke("Delay", 3);
-            //}
         }
 
         if (Input.GetButtonDown("pickDrop"))
@@ -60,14 +37,6 @@ public class GameManager : MonoBehaviour
         {
             brushCollisionPainter.startPainting = true;
             brushCollisionPainter.droplet.GetComponent<DisintegrateDrop>().startDisintegrating = true;
-        }
-    }
-
-    void ReduceValue()
-    {
-        if (normalMapValue > 0)
-        {
-         //   normalMapValue -= 0.01f;
         }
     }
 
@@ -134,8 +103,6 @@ public class GameManager : MonoBehaviour
             step2.SetActive(true);
 
             Debug.Log("wah wah wah 1");
-
-            //  Invoke("DisableAnimator", 2);
         }
         else if (SingletonClass.instance.STEP_NO == 1)
         {
@@ -186,11 +153,6 @@ public class GameManager : MonoBehaviour
     void DelayStep4()
     {
         SingletonClass.instance.STEP_NO++;
-
-        //step2.transform.Find("Shape key curved nail").parent = step3.transform;
-        //step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 100);
-        //step3.transform.Find("Shape key curved nail").GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 100);
-
         step3.SetActive(false);
 
         step4.SetActive(true);

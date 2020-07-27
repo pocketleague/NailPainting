@@ -34,35 +34,34 @@ public class Brush : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
+        // Optional method for touch input
+        //if (Input.touchCount > 0)
+        //{
+        //    touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
-            {
+        //    if (touch.phase == TouchPhase.Began)
+        //    {
 
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-                transform.position = new Vector3(transform.position.x - (touch.deltaPosition.x * speedModifier),
-                                    transform.position.y,
-                                    transform.position.z - (touch.deltaPosition.y * speedModifier));
+        //    }
+        //    if (touch.phase == TouchPhase.Moved)
+        //    {
+        //        transform.position = new Vector3(transform.position.x - (touch.deltaPosition.x * speedModifier),
+        //                            transform.position.y,
+        //                            transform.position.z - (touch.deltaPosition.y * speedModifier));
 
-            }
-        }
+        //    }
+        //}
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "nail")
         {
-            Debug.Log("kkkk");
             skinnedMeshRenderer.SetBlendShapeWeight(0, 100);
         }
 
         if (col.gameObject.tag == "normalNail")
         {
-            Debug.Log("tttt");
             particles.Play();
         }
     }
@@ -99,8 +98,6 @@ public class Brush : MonoBehaviour
 
         Vector3 dir = (lastPos - transform.position);
 
-      //  Debug.Log("pppp dir "+dir);
-
         if (SingletonClass.instance.STEP_NO == 1 || SingletonClass.instance.STEP_NO == 3)
         {
             if (dir.z > 0)
@@ -129,38 +126,18 @@ public class Brush : MonoBehaviour
                 brushTip.SetBlendShapeWeight(0, blendWeight);
             }
 
-
-            //if (cursorPosition.z >= transform.position.z)
-            //{
-            //    blendWeight += 1f;
-            //    brushTip.SetBlendShapeWeight(0, blendWeight);
-            //}
-            //else
-            //{
-            //    if (blendWeight > 0)
-            //    {
-            //        blendWeight -= 1f;
-            //    }
-            //    brushTip.SetBlendShapeWeight(0, blendWeight);
-            //}
-
             if (brushTip.transform.position.x > 0)       // left side
             {
                 onRightSide = false;
                 onLeftSide = true;
 
-           //     Debug.Log("on left side");
-                //   brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, -10);
                 brushModel.transform.localRotation = Quaternion.Euler(-52, -11, -30);
             }
             else
-            // if(!onLeftSide)
             {
                 onLeftSide = false;
                 onRightSide = true;
 
-       //         Debug.Log("on right side");
-                //   brushModel.transform.localRotation = Quaternion.Euler(0.9f, -89, 40);
                 brushModel.transform.localRotation = Quaternion.Euler(-52, -11, 30);
             }
         }
@@ -173,21 +150,10 @@ public class Brush : MonoBehaviour
 
     void OnMouseUp()
     {
-        //if (!EventSystem.current.IsPointerOverGameObject())
-        //{
-        //    CancelInvoke("Delay");
-        //    SingletonClass.instance.IS_CRUSHING = false;
-        //    animator_hand.SetBool("crushing", false);
-        //    //   animator_soap.SetBool("crushing", false);
-        //    soapParent.GetChild(0).GetComponentInChildren<Animator>().SetBool("crushing", false);
-        //}
-
         if (SingletonClass.instance.STEP_NO == 2)
         {
             brushTip.SetBlendShapeWeight(0, 0);
             blendWeight = 0;
         }
-
-
     }
 }
