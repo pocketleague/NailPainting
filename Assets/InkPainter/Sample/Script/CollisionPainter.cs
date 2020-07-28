@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 
 namespace Es.InkPainter.Sample
 {
@@ -22,6 +24,7 @@ namespace Es.InkPainter.Sample
 
         public GameObject target_marker;
 
+        
         public void Awake()
 		{
          //   startPainting = true;
@@ -132,5 +135,11 @@ namespace Es.InkPainter.Sample
         {
             droplet.SetActive(false);
         }
+
+        public void ChangeClor(Image img) {
+            brush.Color = img.color;
+            
+        }
+
     }
 }
