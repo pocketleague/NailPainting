@@ -70,12 +70,33 @@ namespace Es.InkPainter.Sample
                     {
                         Debug.Log("detected");
                         startPainting = true;
+                        hit.collider.gameObject.GetComponent<SphereCollider>().enabled = false;
                     }
 
                     if (!startPainting)
                     {
                         return;
                     }
+
+                    if (droplet != null)
+                    {
+                        if (droplet.GetComponent<MegaMelt>().Amount < 250)
+                        {
+                            droplet.GetComponent<MegaMelt>().Amount += 1;
+                        }
+                        droplet.transform.position = new Vector3(droplet.transform.position.x, droplet.transform.position.y - 0.0001f, droplet.transform.position.z);
+
+                        //else
+                        //{
+                        //    if (!dropRemoved)
+                        //    {
+                        //        dropRemoved = true;
+                        //        Invoke("Deactivate", 2);
+                        //    }
+                        //}
+
+                    }
+
 
                     if (hit.collider.tag == "nail")
                     {
@@ -84,22 +105,22 @@ namespace Es.InkPainter.Sample
                         var canvas = hit.collider.GetComponent<InkCanvas>();
                         if (canvas != null)
                         {
-                            if (droplet != null)
-                            {
-                                if (droplet.GetComponent<MegaMelt>().Amount < 150)
-                                {
-                                    droplet.GetComponent<MegaMelt>().Amount += 1;
-                                }
-                                else
-                                {
-                                    if (!dropRemoved)
-                                    {
-                                        dropRemoved = true;
-                                        Invoke("Deactivate", 2);
-                                    }
-                                }
+                            //if (droplet != null)
+                            //{
+                            //    if (droplet.GetComponent<MegaMelt>().Amount < 150)
+                            //    {
+                            //        droplet.GetComponent<MegaMelt>().Amount += 1;
+                            //    }
+                            //    else
+                            //    {
+                            //        if (!dropRemoved)
+                            //        {
+                            //            dropRemoved = true;
+                            //            Invoke("Deactivate", 2);
+                            //        }
+                            //    }
 
-                            }
+                            //}
                             canvas.Paint(brush, hit.point);
 
                             target_marker.SetActive(true);
