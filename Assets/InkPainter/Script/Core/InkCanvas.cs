@@ -343,6 +343,7 @@ namespace Es.InkPainter
 		/// </summary>
 		private void SetMaterial()
 		{
+
 			if(paintMainMaterial == null)
 				paintMainMaterial = new Material(Resources.Load<Material>("Es.InkPainter.PaintMain"));
 			if(paintNormalMaterial == null)
@@ -687,6 +688,8 @@ namespace Es.InkPainter
 			var set = materialSelector == null ? paintSet : paintSet.Where(materialSelector);
 			foreach(var p in set)
 			{
+				Debug.Log("gggg kkkk");
+
 				var mainPaintConditions = p.useMainPaint && brush.BrushTexture != null && p.paintMainTexture != null && p.paintMainTexture.IsCreated();
 				var normalPaintConditions = p.useNormalPaint && brush.BrushNormalTexture != null && p.paintNormalTexture != null && p.paintNormalTexture.IsCreated();
 				var heightPaintConditions = p.useHeightPaint && brush.BrushHeightTexture != null && p.paintHeightTexture != null && p.paintHeightTexture.IsCreated();
@@ -698,9 +701,9 @@ namespace Es.InkPainter
 				{
 					var mainPaintTextureBuffer = RenderTexture.GetTemporary(p.paintMainTexture.width, p.paintMainTexture.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
 					SetPaintMainData(brush, uv);
-					Graphics.Blit(p.paintMainTexture, mainPaintTextureBuffer, paintMainMaterial);
-					Graphics.Blit(mainPaintTextureBuffer, p.paintMainTexture);
-					RenderTexture.ReleaseTemporary(mainPaintTextureBuffer);
+                    Graphics.Blit(p.paintMainTexture, mainPaintTextureBuffer, paintMainMaterial);
+                    Graphics.Blit(mainPaintTextureBuffer, p.paintMainTexture);
+                    RenderTexture.ReleaseTemporary(mainPaintTextureBuffer);
 				}
 
 				if(normalPaintConditions)

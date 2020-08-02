@@ -23,6 +23,7 @@ namespace Es.InkPainter.Sample
         public bool dropRemoved;
 
         public GameObject target_marker;
+        public Image img;
 
         
         public void Awake()
@@ -98,34 +99,30 @@ namespace Es.InkPainter.Sample
                     }
 
 
-                    if (hit.collider.tag == "nail")
+                    if (hit.collider.tag == "nail" || true)
                     {
                         //foreach (var p in hit.point)
                         //{
                         var canvas = hit.collider.GetComponent<InkCanvas>();
                         if (canvas != null)
                         {
-                            //if (droplet != null)
-                            //{
-                            //    if (droplet.GetComponent<MegaMelt>().Amount < 150)
-                            //    {
-                            //        droplet.GetComponent<MegaMelt>().Amount += 1;
-                            //    }
-                            //    else
-                            //    {
-                            //        if (!dropRemoved)
-                            //        {
-                            //            dropRemoved = true;
-                            //            Invoke("Deactivate", 2);
-                            //        }
-                            //    }
-
-                            //}
+                            if (droplet != null)
+                            {
+                                if (droplet.GetComponent<MegaMelt>().Amount < 150)
+                                {
+                                    droplet.GetComponent<MegaMelt>().Amount += 1;
+                                }
+                                else
+                                {
+                                    if (!dropRemoved)
+                                    {
+                                        dropRemoved = true;
+                                        Invoke("Deactivate", 2);
+                                    }
+                                }
+                            }
                             canvas.Paint(brush, hit.point);
 
-                            target_marker.SetActive(true);
-                            Vector3 pos = new Vector3(hit.point.x, hit.point.y + .4f, hit.point.z);
-                            target_marker.transform.position = pos;
                         }
                         // }
                     }
