@@ -28932,12 +28932,12 @@ MonoBehaviour:
     brushNormalTexture: {fileID: 0}
     brushHeightTexture: {fileID: 2800000, guid: e1d77a6a5022d4442814ccb50d2a5d9d,
       type: 3}
-    brushScale: 0.073
+    brushScale: 0.042
     rotateAngle: 0
     brushNormalBlend: 0.1
     brushHeightBlend: 0.141
     brushColor: {r: 1, g: 1, b: 1, a: 1}
-    colorBlendType: 1
+    colorBlendType: 3
     normalBlendType: 4
     heightBlendType: 0
   wait: 1
@@ -70305,7 +70305,7 @@ MonoBehaviour:
   colorSynthesis: 1
   alpha: 0.484
   flowDirection: {x: 0, y: 1}
-  flowingForce: 0.176
+  flowingForce: 0.134
   easeOfDripping: 1.91
   influenceOfNormal: 0.186
   horizontalSpread: 0.01
@@ -70330,8 +70330,8 @@ MonoBehaviour:
     normalTextureName: _BumpMap
     heightTextureName: _ParallaxMap
     useMainPaint: 1
-    useNormalPaint: 0
-    useHeightPaint: 0
+    useNormalPaint: 1
+    useHeightPaint: 1
 --- !u!64 &7611535087876708520
 MeshCollider:
   m_ObjectHideFlags: 0
