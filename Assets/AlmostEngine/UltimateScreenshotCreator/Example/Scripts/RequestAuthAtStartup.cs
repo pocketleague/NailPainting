@@ -12,9 +12,9 @@ namespace AlmostEngine.Examples
 				void Start ()
 				{
 						#if UNITY_IOS
-						if(!iOsUtils.HasGalleryAuthorization()){
-							iOsUtils.RequestGalleryAuthorization();
-						}
+						//if(!iOsUtils.HasGalleryAuthorization()){
+						//	iOsUtils.RequestGalleryAuthorization();
+						//}
 						#endif
 				}
 		}

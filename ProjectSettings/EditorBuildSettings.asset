@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PaintIn3D/InGame/Examples/01 Basic Setup.unity
-    guid: 9367cc25c8ed61044a12babc8b0b59cf
+    path: Assets/AlmostEngine/CaptureImage.unity
+    guid: a12d91accad1ce74c82190ad7a776851
   m_configObjects: {}
